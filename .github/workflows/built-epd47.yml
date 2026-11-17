@@ -1,0 +1,26 @@
+name: Build ESP-Claw with EPD47
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Permite ejecutarlo manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build with ESP-IDF
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.4
+          target: esp32s3 # Cambia esto si tu placa es otra (ej. esp32)
+          # Apunta a la carpeta de la aplicación principal
+          path: application/edge_agent 
+          # Opcional: Comando para construir y generar un único binario
+          command: |
+            idf.py build
+            # Si necesitas un solo archivo .bin para flashear fácilmente:
+            # idf.py merge-bin
