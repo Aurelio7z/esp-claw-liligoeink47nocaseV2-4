@@ -1,0 +1,3 @@
+dependencies:
+  idf: ">=5.0"
+  vroland/epdiy: "^2.0.0" # O la versión más reciente compatible
